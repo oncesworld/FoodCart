@@ -10,9 +10,10 @@ import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.CardCartpageBinding
 import com.example.foodcartfinalproject.databinding.CardMainpageBinding
+import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>)
+class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>, var viewModel: FoodCartViewModel)
     : RecyclerView.Adapter<FoodCartAdapter.CardDesignHolderCart>() {
 
     inner class CardDesignHolderCart(var design: CardCartpageBinding) : RecyclerView.ViewHolder(design.root)
@@ -47,8 +48,6 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>)
     }
 
     fun deleteFood(yemek_id: Int){
-        Log.e("yemek sil", yemek_id.toString())
+        viewModel.deleteFood(yemek_id)
     }
-
-
 }
