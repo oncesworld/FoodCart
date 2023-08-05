@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
+import com.example.foodcartfinalproject.data.entity.utils.CartFoodList
 import com.example.foodcartfinalproject.databinding.FragmentFoodDetailBinding
 import com.example.foodcartfinalproject.databinding.FragmentMainPageBinding
 
@@ -23,9 +25,9 @@ class FoodDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentFoodDetailBinding.inflate(inflater,container,false)
-
-        binding.toolbarDetailPage.title = "Food Details"
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_food_detail,container,false)
+        binding.detailPageFragment = this
+        binding.toolbarDetailPageData = "Food Details"
 
         binding.fabDetail.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.detailToCart)
@@ -34,6 +36,8 @@ class FoodDetailFragment : Fragment() {
         // Nesneyi aktaran kod
         val bundle:FoodDetailFragmentArgs by navArgs()
         val foodTaken = bundle.food
+        binding.foodVariable = foodTaken
+
         binding.buttonIncreaseQuantity.setOnClickListener {
             quantity++
             binding.quantityText.setText(quantity.toString())
@@ -45,12 +49,10 @@ class FoodDetailFragment : Fragment() {
 
         }
 
-
-        binding.foodNameText.setText(foodTaken.yemek_adi)
-        binding.foodNameText.setText(foodTaken.yemek_fiyat.toString())
+        //Nesne transferi Databindingde hata aldım
+        //binding.foodNameText.setText(foodTaken.yemek_adi)
+        //binding.foodPriceText.setText(foodTaken.yemek_fiyat.toString())
         //binding.foodImage.setImageResource(foodTaken.yemek_resim_adi)
-
-
 
 
         // Detay ekranından Sepete ekleyen fonksiyon
@@ -61,7 +63,11 @@ class FoodDetailFragment : Fragment() {
         return binding.root
     }
 
+    fun goToCart(it: View){
+        Navigation.findNavController(it).navigate(R.id.detailToCart)
+    }
     fun addToCartFromDetail(food : Foods){
-        foodCartList.add(food)
+        CartFoodList.foodCartPaymentList.add(food)
+        Log.e("listeyigöster","${CartFoodList.foodCartPaymentList}")
     }
 }

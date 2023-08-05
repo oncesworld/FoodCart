@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.FoodCartFragment" >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarCartPage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:src="@drawable/payment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <variable
+            name="toolbarCartPageData"
+            type="String" />
+        <variable
+            name="cartPageFragment"
+            type="com.example.foodcartfinalproject.ui.fragment.FoodCartFragment" />
+        <variable
+            name="foodCartAdapter"
+            type="com.example.foodcartfinalproject.ui.adapter.FoodCartAdapter" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarCartPage" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.FoodCartFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCartPage"
+            app:title="@{toolbarCartPageData}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/payment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCart"
+            android:adapter="@{foodCartAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarCartPage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

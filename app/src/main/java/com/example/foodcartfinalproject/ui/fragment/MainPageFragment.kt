@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -22,11 +23,11 @@ class MainPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentMainPageBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
 
-        binding.toolbarMainPage.title = "Foods"
+        binding.mainPageFragment = this
+        binding.toolbarMainPageData = "Foods"
 
-        binding.rvMain.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
 
         val foodList = ArrayList<Foods>()
 
@@ -39,13 +40,13 @@ class MainPageFragment : Fragment() {
         foodList.add(y3)
 
         val adapter = FoodMainAdapter(requireContext(),foodList)
-        binding.rvMain.adapter = adapter
-
-        binding.fabMain.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.mainToCart)
-        }
+        binding.foodMainAdapter = adapter
 
         return binding.root
+    }
+
+    fun goToCart(it: View){
+        Navigation.findNavController(it).navigate(R.id.mainToCart)
     }
 
     fun addToCart(yemek_ad:String){
