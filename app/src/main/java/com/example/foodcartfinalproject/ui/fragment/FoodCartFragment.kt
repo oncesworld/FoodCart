@@ -14,7 +14,9 @@ import com.example.foodcartfinalproject.databinding.FragmentFoodCartBinding
 import com.example.foodcartfinalproject.databinding.FragmentMainPageBinding
 import com.example.foodcartfinalproject.ui.adapter.FoodCartAdapter
 import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodCartFragment : Fragment() {
     private lateinit var binding: FragmentFoodCartBinding
     private lateinit var viewModel: FoodCartViewModel

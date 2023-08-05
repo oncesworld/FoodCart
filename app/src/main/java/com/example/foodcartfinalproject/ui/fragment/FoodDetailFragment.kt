@@ -16,7 +16,9 @@ import com.example.foodcartfinalproject.data.entity.utils.CartFoodList
 import com.example.foodcartfinalproject.databinding.FragmentFoodDetailBinding
 import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
 import com.example.foodcartfinalproject.ui.viewmodel.FoodDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodDetailFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
     private lateinit var viewModel: FoodDetailViewModel

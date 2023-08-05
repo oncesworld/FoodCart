@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.data.repo.FoodsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainPageViewModel : ViewModel() {
-    var frepo = FoodsRepository()
+@HiltViewModel
+class MainPageViewModel @Inject constructor(var frepo:FoodsRepository) : ViewModel() {
     var foodList = MutableLiveData<List<Foods>>()
 
     //Uygulama çalışır çalışmaz liste yükle kodunun çalışmasını sağlar
