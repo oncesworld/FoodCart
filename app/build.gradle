@@ -28,16 +28,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
+
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "kotlin-kapt"
 
 dependencies {
 
@@ -53,4 +58,7 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.6.1"
     implementation "androidx.activity:activity-ktx:1.7.2"
+
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
 }

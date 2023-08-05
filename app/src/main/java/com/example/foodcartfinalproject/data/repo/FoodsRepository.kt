@@ -4,8 +4,7 @@ import android.util.Log
 import com.example.foodcartfinalproject.data.datasource.FoodsDataSource
 import com.example.foodcartfinalproject.data.entity.Foods
 
-class FoodsRepository {
-    var fds = FoodsDataSource()
+class FoodsRepository(var fds: FoodsDataSource) {
 
     suspend fun addToCartFromDetail(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
         fds.addToCartFromDetail(yemek_adi,yemek_fiyat,yemek_resim_ad)

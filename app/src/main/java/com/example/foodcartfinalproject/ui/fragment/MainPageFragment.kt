@@ -15,7 +15,9 @@ import com.example.foodcartfinalproject.databinding.FragmentMainPageBinding
 import com.example.foodcartfinalproject.ui.adapter.FoodMainAdapter
 import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
 import com.example.foodcartfinalproject.ui.viewmodel.MainPageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainPageFragment : Fragment() {
     private lateinit var binding: FragmentMainPageBinding
     private lateinit var viewModel: MainPageViewModel
