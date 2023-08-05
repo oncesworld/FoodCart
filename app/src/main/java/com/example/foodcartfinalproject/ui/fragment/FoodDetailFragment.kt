@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.data.entity.utils.CartFoodList
@@ -54,6 +55,9 @@ class FoodDetailFragment : Fragment() {
             decreaseQuantity(foodTaken.yemek_id,quantity)
         }
 
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodTaken.yemek_resim_adi}"
+        Glide.with(this).load(url).override(500,500).into(binding.foodImage)
+
         //Nesne transferi Databindingde hata aldım
         //binding.foodNameText.setText(foodTaken.yemek_adi)
         //binding.foodPriceText.setText(foodTaken.yemek_fiyat.toString())
@@ -90,5 +94,9 @@ class FoodDetailFragment : Fragment() {
 
     fun decreaseQuantity(yemek_id: Int,quantity : Int){
         viewModel.decreaseQuantity(yemek_id,quantity)
+    }
+    fun resimGuncelle(resimAdi:String){
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${resimAdi}"
+        Glide.with(this).load(url).override(300,300).into(binding.foodImage)
     }
 }

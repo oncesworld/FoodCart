@@ -2,10 +2,11 @@ package com.example.foodcartfinalproject.data.datasource
 
 import android.util.Log
 import com.example.foodcartfinalproject.data.entity.Foods
+import com.example.foodcartfinalproject.retrofit.FoodsDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class FoodsDataSource {
+class FoodsDataSource(var fdao:FoodsDao) {
 
     suspend fun addToCartFromDetail(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
         Log.e("Sepete ekle","$yemek_adi - $yemek_fiyat - $yemek_resim_ad")
@@ -29,16 +30,7 @@ class FoodsDataSource {
 
     suspend fun loadFoodsToMain() : List<Foods> =
         withContext(Dispatchers.IO){
-            val foodList = ArrayList<Foods>()
-
-            val y1 = Foods(1,"Yemek1","resim1",11)
-            val y2 = Foods(2,"Yemek2","resim2",22)
-            val y3 = Foods(3,"Yemek3","resim3",33)
-
-            foodList.add(y1)
-            foodList.add(y2)
-            foodList.add(y3)
-            return@withContext foodList
+            return@withContext fdao.loadFoods().yemekler
 
         }
 
