@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.CardCartpageBinding
@@ -26,6 +27,8 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>, var 
     override fun onBindViewHolder(holder: CardDesignHolderCart, position: Int) {
         val foodCart = foodCartList.get(position)
         val d = holder.design
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodCart.yemek_resim_adi}"
+        Glide.with(mContext).load(url).override(300,300).into(d.cardCartFoodImage)
 
         d.foodVariable = foodCart
 

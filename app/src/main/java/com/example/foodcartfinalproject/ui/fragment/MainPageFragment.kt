@@ -37,9 +37,6 @@ class MainPageFragment : Fragment() {
             val adapter = FoodMainAdapter(requireContext(),it,viewModel)
             binding.foodMainAdapter = adapter
         }
-
-
-
         return binding.root
     }
 

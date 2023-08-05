@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.data.entity.utils.CartFoodList
@@ -28,10 +29,13 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
 
     //Burada verileri kartlara aktarıyoruz
     override fun onBindViewHolder(holder: CardDesignHolder, position: Int) {
+
         val food = foodList.get(position)
         val d = holder.design
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}"
+        Glide.with(mContext).load(url).override(300,300).into(d.cardFoodImageMain)
 
-        d.foodVariable = food
+        d.foodVariableMain = food
 
         //d.cardFoodImageMain.setImageResource(food.yemek_resim_adi)
 
@@ -50,6 +54,8 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
             val transition = MainPageFragmentDirections.mainToDetail(food = food)
             Navigation.findNavController(it).navigate(transition)
         }
+
+
 
     }
     override fun getItemCount(): Int {
