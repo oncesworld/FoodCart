@@ -1,110 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.FoodDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/foodImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodNameText"
-        tools:src="@tools:sample/avatars" />
+    <data>
 
-    <TextView
-        android:id="@+id/foodNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Name of Food"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage" />
+        <variable
+            name="toolbarDetailPageData"
+            type="String" />
+        <variable
+            name="detailPageFragment"
+            type="com.example.foodcartfinalproject.ui.fragment.FoodDetailFragment" />
+        <variable
+            name="foodVariable"
+            type="com.example.foodcartfinalproject.data.entity.Foods" />
 
-    <TextView
-        android:id="@+id/foodPriceText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="81dp"
-        android:text="Price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodImage" />
 
-    <TextView
-        android:id="@+id/quantityText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quantity"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonIncreaseQuantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonIncreaseQuantity" />
+    </data>
 
-    <Button
-        android:id="@+id/buttonDecreaseQuantity"
-        android:layout_width="59dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="415dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="119dp"
-        android:text="-"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/quantityText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.FoodDetailFragment">
 
-    <Button
-        android:id="@+id/buttonIncreaseQuantity"
-        android:layout_width="59dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginEnd="82dp"
-        android:text="+"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonDecreaseQuantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/quantityText"
-        app:layout_constraintTop_toTopOf="@+id/buttonDecreaseQuantity" />
+        <ImageView
+            android:id="@+id/foodImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodNameText"
+            tools:src="@tools:sample/avatars" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarDetailPage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/foodNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@{foodVariable.yemek_adi}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:src="@drawable/go_to_cart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/foodPriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="81dp"
+            android:text="@{String.valueOf(foodVariable.yemek_fiyat)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodImage" />
 
-    <ImageButton
-        android:id="@+id/addToCartDetail"
-        android:layout_width="68dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="67dp"
-        android:src="@drawable/add_to_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantityText" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/quantityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonIncreaseQuantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonIncreaseQuantity" />
+
+        <Button
+            android:id="@+id/buttonDecreaseQuantity"
+            android:layout_width="59dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginTop="415dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="119dp"
+            android:text="-"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/quantityText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage" />
+
+        <Button
+            android:id="@+id/buttonIncreaseQuantity"
+            android:layout_width="59dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginEnd="82dp"
+            android:text="+"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonDecreaseQuantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/quantityText"
+            app:layout_constraintTop_toTopOf="@+id/buttonDecreaseQuantity" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarDetailPage"
+            app:title="@{toolbarDetailPageData}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:onClick="@{()-> detailPageFragment.goToCart(fabDetail)}"
+            android:src="@drawable/go_to_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/addToCartDetail"
+            android:layout_width="68dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="67dp"
+            android:src="@drawable/add_to_cart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantityText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
@@ -20,11 +21,9 @@ class FoodCartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentFoodCartBinding.inflate(inflater,container,false)
-
-        binding.toolbarCartPage.title = "My Cart"
-
-        binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_food_cart,container,false)
+        binding.cartPageFragment = this
+        binding.toolbarCartPageData = "My Cart"
 
         val foodCartList = ArrayList<Foods>()
         val y1 = Foods(1,"sepet1","resim1",11)
@@ -36,7 +35,7 @@ class FoodCartFragment : Fragment() {
         foodCartList.add(y3)
 
         val adapter = FoodCartAdapter(requireContext(),foodCartList)
-        binding.rvCart.adapter = adapter
+        binding.foodCartAdapter = adapter
 
         return binding.root
     }
