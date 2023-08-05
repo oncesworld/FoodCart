@@ -14,8 +14,9 @@ import com.example.foodcartfinalproject.databinding.CardMainpageBinding
 import com.example.foodcartfinalproject.databinding.FragmentMainPageBinding
 import com.example.foodcartfinalproject.ui.fragment.MainPageFragment
 import com.example.foodcartfinalproject.ui.fragment.MainPageFragmentDirections
+import com.example.foodcartfinalproject.ui.viewmodel.MainPageViewModel
 
-class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>)
+class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewModel: MainPageViewModel)
     : RecyclerView.Adapter<FoodMainAdapter.CardDesignHolder>() {
 
     inner class CardDesignHolder(var design: CardMainpageBinding) : RecyclerView.ViewHolder(design.root)
@@ -38,7 +39,10 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>)
         //Butonların özelliklerini aşağıdaki gibi aktif ediyorum
         //Sepete ekliyorum
         d.addtoCartCardMainPage.setOnClickListener{
-            CartFoodList.foodCartPaymentList.add(food)
+            var yemek_adi = food.yemek_adi
+            var yemek_fiyat = food.yemek_fiyat
+            var yemek_resim_ad = food.yemek_resim_adi
+            addToCartFromMain(yemek_adi,yemek_fiyat,yemek_resim_ad)
         }
 
         //Karta tıkladığımda detaya bilgileri gönderiyorum
@@ -48,8 +52,11 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>)
         }
 
     }
-
     override fun getItemCount(): Int {
         return foodList.size
+    }
+
+    fun addToCartFromMain(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
+        viewModel.addToCartFromMain(yemek_adi,yemek_fiyat,yemek_resim_ad)
     }
 }

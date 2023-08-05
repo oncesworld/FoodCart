@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.FragmentFoodCartBinding
 import com.example.foodcartfinalproject.databinding.FragmentMainPageBinding
 import com.example.foodcartfinalproject.ui.adapter.FoodCartAdapter
+import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
 
 class FoodCartFragment : Fragment() {
     private lateinit var binding: FragmentFoodCartBinding
+    private lateinit var viewModel: FoodCartViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,18 +28,19 @@ class FoodCartFragment : Fragment() {
         binding.cartPageFragment = this
         binding.toolbarCartPageData = "My Cart"
 
-        val foodCartList = ArrayList<Foods>()
-        val y1 = Foods(1,"sepet1","resim1",11)
-        val y2 = Foods(2,"sepet2","resim2",22)
-        val y3 = Foods(3,"sepet3","resim3",33)
+        viewModel.foodList.observe(viewLifecycleOwner){
 
-        foodCartList.add(y1)
-        foodCartList.add(y2)
-        foodCartList.add(y3)
+            val adapter = FoodCartAdapter(requireContext(),it,viewModel)
+            binding.foodCartAdapter = adapter
+        }
 
-        val adapter = FoodCartAdapter(requireContext(),foodCartList)
-        binding.foodCartAdapter = adapter
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel:FoodCartViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }
