@@ -28,27 +28,29 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, 
     }
 
     override fun onBindViewHolder(holder: CardDesignHolderCart, position: Int) {
-        val foodCart = foodCartList.get(position)
-        val d = holder.design
-        d.foodVariableCart = foodCart
+            val foodCart = foodCartList.get(position)
+            val d = holder.design
+            d.foodVariableCart = foodCart
 
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodCart.yemek_resim_adi}"
-        getImageFromGlide(url,d.cardCartFoodImage)
-        //Glide.with(mContext).load(url).override(300,300).into(d.cardCartFoodImage)
+            val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodCart.yemek_resim_adi}"
+            getImageFromGlide(url,d.cardCartFoodImage)
+            //Glide.with(mContext).load(url).override(300,300).into(d.cardCartFoodImage)
 
 
-        //Adedi nasıl alacağız?
-        //d.cardCartFoodImage.setImageResource(foodCart.yemek_resim_adi)
-        //d.card.adet =
+            //Adedi nasıl alacağız?
+            //d.cardCartFoodImage.setImageResource(foodCart.yemek_resim_adi)
+            //d.card.adet =
 
 
         //Yemek sil fonksiyonu aşağıdaki gibi
-        d.cartCardDeleteButton.setOnClickListener{
-            Snackbar.make(it,"${foodCart.yemek_adi} discard?",Snackbar.LENGTH_SHORT)
-                .setAction("Yes"){
-                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = "eat_big1")
+        d.cartCardDeleteButton.setOnClickListener {
+            Snackbar.make(it, "${foodCart.yemek_adi} discard?", Snackbar.LENGTH_SHORT)
+                .setAction("Yes") {
+                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = "eat_big_get_big")
                 }.show()
         }
+
+
     }
 
     fun getImageFromGlide(url: String, cardCartFoodImage: ImageView) {
@@ -62,4 +64,5 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, 
     fun deleteFood(yemek_id: Int,kullanici_adi:String){
         viewModel.deleteFood(yemek_id,kullanici_adi)
     }
+
 }

@@ -27,18 +27,15 @@ class FoodCartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //Yüklenen verinin sepette gösterilmesini sağlar
+        //Yüklenen verinin sepette gösterilmesini sağlar sepet boşaldığında checkliyor.
         viewModel.cartFoodList.observe(viewLifecycleOwner){
-
-
-            val adapter = FoodCartAdapter(requireContext(),it,viewModel)
+            val adapter = it?.let { it1 -> FoodCartAdapter(requireContext(), it1,viewModel) }
             binding.foodCartAdapter = adapter
         }
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_food_cart,container,false)
         binding.cartPageFragment = this
         binding.toolbarCartPageData = "My Cart"
-
 
 
         return binding.root

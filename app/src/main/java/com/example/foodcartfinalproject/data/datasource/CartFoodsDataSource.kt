@@ -29,7 +29,7 @@ class CartFoodsDataSource(var cdao:CartFoodsDao) {
 
     suspend fun loadFoodsToCart() : List<CartFoods> =
         withContext(Dispatchers.IO){
-            return@withContext cdao.loadCartFoods("eat_big1").sepet_yemekler
+            return@withContext cdao.loadCartFoods("eat_big_get_big").sepet_yemekler
         }
 
 }

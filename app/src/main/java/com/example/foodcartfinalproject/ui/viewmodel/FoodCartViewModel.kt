@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FoodCartViewModel @Inject constructor(var crepo:CartFoodsRepository) : ViewModel() {
-    var cartFoodList = MutableLiveData<List<CartFoods>>()
+    var cartFoodList = MutableLiveData<List<CartFoods>?>()
 
     //Uygulama çalışır çalışmaz liste yükle kodunun çalışmasını sağlar
     init {
@@ -27,10 +27,13 @@ class FoodCartViewModel @Inject constructor(var crepo:CartFoodsRepository) : Vie
             cartFoodList.value = crepo.loadFoodsToCart()
         }
     }
-
-    fun deleteFood(yemek_id: Int,kullanici_adi:String){
+    fun deleteFood(yemek_id: Int, kullanici_adi: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            crepo.deleteFood(yemek_id,kullanici_adi)
+            crepo.deleteFood(yemek_id, kullanici_adi)
+            // Live datayı temizliyor
+            val newList = cartFoodList.value?.toMutableList()
+            newList?.removeAll { it.sepet_yemek_id == yemek_id }
+            cartFoodList.value = newList
         }
     }
 }

@@ -15,6 +15,7 @@ import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.FragmentFoodDetailBinding
 import com.example.foodcartfinalproject.ui.viewmodel.FoodDetailViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,9 +69,15 @@ class FoodDetailFragment : Fragment() {
             var yemek_fiyat = foodTaken.yemek_fiyat
             var yemek_resim_adi = foodTaken.yemek_resim_adi
             var yemek_siparis_adet = quantity
-            var kullanici_adi = "eat_big1"
-            addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-            Log.e("sepete ekle çalıştı","sepete ekle mesajı clicklistener fragment")
+            var kullanici_adi = "eat_big_get_big"
+            if(quantity>0){
+                addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+            }else{Snackbar.make(it,"You need to increase quantity",Snackbar.LENGTH_SHORT)
+                .setAction("Ok"){
+
+                }.show()
+
+            }
         }
 
         return binding.root
@@ -88,7 +95,6 @@ class FoodDetailFragment : Fragment() {
     fun addToCartFromDetail(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
                             yemek_siparis_adet:Int,kullanici_adi:String){
         viewModel.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-        Log.e("sepete ekle çalıştı","sepete ekle mesajı FRAGMENT fonksiyon")
     }
 
     fun increaseQuantity(yemek_id: Int,quantity : Int){
