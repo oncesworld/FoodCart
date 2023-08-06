@@ -15,6 +15,7 @@ import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.FragmentFoodDetailBinding
 import com.example.foodcartfinalproject.ui.viewmodel.FoodDetailViewModel
+import com.example.foodcartfinalproject.utility.UserNameStatic
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +24,8 @@ class FoodDetailFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
     private lateinit var viewModel: FoodDetailViewModel
     var quantity = 0
-    var foodCartList = ArrayList<Foods>()
+    //Checking same foods to prevent repetetive food
+    val checkSameFood = ArrayList<Pair<String, Int>>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,9 +51,11 @@ class FoodDetailFragment : Fragment() {
             increaseQuantity(foodTaken.yemek_id,quantity)
         }
         binding.buttonDecreaseQuantity.setOnClickListener {
-            quantity--
-            binding.quantityText.setText(quantity.toString())
-            decreaseQuantity(foodTaken.yemek_id,quantity)
+            if (quantity>0){
+                quantity--
+                binding.quantityText.setText(quantity.toString())
+                decreaseQuantity(foodTaken.yemek_id,quantity)
+            }
         }
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodTaken.yemek_resim_adi}"
@@ -69,17 +73,14 @@ class FoodDetailFragment : Fragment() {
             var yemek_fiyat = foodTaken.yemek_fiyat
             var yemek_resim_adi = foodTaken.yemek_resim_adi
             var yemek_siparis_adet = quantity
-            var kullanici_adi = "eat_big_get_big"
+            var kullanici_adi = UserNameStatic.user_name
             if(quantity>0){
                 addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
             }else{Snackbar.make(it,"You need to increase quantity",Snackbar.LENGTH_SHORT)
                 .setAction("Ok"){
-
                 }.show()
-
             }
         }
-
         return binding.root
     }
 

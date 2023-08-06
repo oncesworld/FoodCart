@@ -27,7 +27,7 @@ class FoodCartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //Yüklenen verinin sepette gösterilmesini sağlar sepet boşaldığında checkliyor.
+        //Yüklenen verinin sepette gösterilmesini sağlar sepet boşaldığında checkler.
         viewModel.cartFoodList.observe(viewLifecycleOwner){
             val adapter = it?.let { it1 -> FoodCartAdapter(requireContext(), it1,viewModel) }
             binding.foodCartAdapter = adapter
