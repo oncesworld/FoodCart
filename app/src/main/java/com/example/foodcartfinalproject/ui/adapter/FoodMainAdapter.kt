@@ -1,7 +1,6 @@
 package com.example.foodcartfinalproject.ui.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
-import com.example.foodcartfinalproject.data.entity.utils.CartFoodList
 import com.example.foodcartfinalproject.databinding.CardMainpageBinding
-import com.example.foodcartfinalproject.databinding.FragmentMainPageBinding
-import com.example.foodcartfinalproject.ui.fragment.MainPageFragment
 import com.example.foodcartfinalproject.ui.fragment.MainPageFragmentDirections
 import com.example.foodcartfinalproject.ui.viewmodel.MainPageViewModel
 

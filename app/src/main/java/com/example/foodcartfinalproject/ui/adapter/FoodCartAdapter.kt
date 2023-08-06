@@ -8,13 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.R
+import com.example.foodcartfinalproject.data.entity.CartFoods
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.CardCartpageBinding
 import com.example.foodcartfinalproject.databinding.CardMainpageBinding
 import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>, var viewModel: FoodCartViewModel)
+class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, var viewModel: FoodCartViewModel)
     : RecyclerView.Adapter<FoodCartAdapter.CardDesignHolderCart>() {
 
     inner class CardDesignHolderCart(var design: CardCartpageBinding) : RecyclerView.ViewHolder(design.root)
@@ -41,7 +42,7 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>, var 
         d.cartCardDeleteButton.setOnClickListener{
             Snackbar.make(it,"${foodCart.yemek_adi} discard?",Snackbar.LENGTH_SHORT)
                 .setAction("Yes"){
-                    deleteFood(foodCart.yemek_id)
+                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = "eat_big")
                 }.show()
         }
     }
@@ -50,7 +51,7 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<Foods>, var 
         return foodCartList.size
     }
 
-    fun deleteFood(yemek_id: Int){
-        viewModel.deleteFood(yemek_id)
+    fun deleteFood(yemek_id: Int,kullanici_adi:String){
+        viewModel.deleteFood(yemek_id,kullanici_adi)
     }
 }
