@@ -1,6 +1,8 @@
 package com.example.foodcartfinalproject.di
 
+import com.example.foodcartfinalproject.data.datasource.CartFoodsDataSource
 import com.example.foodcartfinalproject.data.datasource.FoodsDataSource
+import com.example.foodcartfinalproject.data.repo.CartFoodsRepository
 import com.example.foodcartfinalproject.data.repo.FoodsRepository
 import com.example.foodcartfinalproject.retrofit.ApiUtils
 import com.example.foodcartfinalproject.retrofit.FoodsDao
@@ -29,6 +31,18 @@ class AppModule {
     @Singleton
     fun provideFoodsDao() : FoodsDao{
         return ApiUtils.getFoodsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartFoodsRepository(cfds : CartFoodsDataSource) : CartFoodsRepository{
+        return CartFoodsRepository(cfds)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartFoodsDataSource() : CartFoodsDataSource{
+        return CartFoodsDataSource()
     }
 
 }

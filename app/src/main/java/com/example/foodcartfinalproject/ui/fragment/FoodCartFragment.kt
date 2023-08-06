@@ -30,8 +30,7 @@ class FoodCartFragment : Fragment() {
         binding.cartPageFragment = this
         binding.toolbarCartPageData = "My Cart"
 
-        viewModel.foodList.observe(viewLifecycleOwner){
-
+        viewModel.cartFoodList.observe(viewLifecycleOwner){
             val adapter = FoodCartAdapter(requireContext(),it,viewModel)
             binding.foodCartAdapter = adapter
         }
@@ -44,5 +43,10 @@ class FoodCartFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val tempViewModel:FoodCartViewModel by viewModels()
         viewModel = tempViewModel
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadFoodsToCart()
     }
 }

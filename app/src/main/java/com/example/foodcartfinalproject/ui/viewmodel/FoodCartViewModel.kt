@@ -3,7 +3,9 @@ package com.example.foodcartfinalproject.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.foodcartfinalproject.data.entity.CartFoods
 import com.example.foodcartfinalproject.data.entity.Foods
+import com.example.foodcartfinalproject.data.repo.CartFoodsRepository
 import com.example.foodcartfinalproject.data.repo.FoodsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -12,8 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FoodCartViewModel @Inject constructor(var frepo:FoodsRepository) : ViewModel() {
-    var foodList = MutableLiveData<List<Foods>>()
+class FoodCartViewModel @Inject constructor(var crepo:CartFoodsRepository) : ViewModel() {
+    var cartFoodList = MutableLiveData<List<CartFoods>>()
 
     //Uygulama çalışır çalışmaz liste yükle kodunun çalışmasını sağlar
     init {
@@ -22,13 +24,13 @@ class FoodCartViewModel @Inject constructor(var frepo:FoodsRepository) : ViewMod
 
     fun loadFoodsToCart(){
         CoroutineScope(Dispatchers.Main).launch {
-            foodList.value = frepo.loadFoodsToMain()
+            cartFoodList.value = crepo.loadFoodsToCart()
         }
     }
 
-    fun deleteFood(yemek_id: Int){
+    fun deleteFood(yemek_id: Int,kullanici_adi:String){
         CoroutineScope(Dispatchers.Main).launch {
-            frepo.deleteFood(yemek_id)
+            crepo.deleteFood(yemek_id,kullanici_adi)
         }
     }
 }

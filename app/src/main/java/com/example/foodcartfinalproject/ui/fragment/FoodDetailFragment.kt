@@ -1,7 +1,6 @@
 package com.example.foodcartfinalproject.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
-import com.example.foodcartfinalproject.data.entity.utils.CartFoodList
 import com.example.foodcartfinalproject.databinding.FragmentFoodDetailBinding
-import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
 import com.example.foodcartfinalproject.ui.viewmodel.FoodDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,7 +66,9 @@ class FoodDetailFragment : Fragment() {
             var yemek_adi = foodTaken.yemek_adi
             var yemek_fiyat = foodTaken.yemek_fiyat
             var yemek_resim_ad = foodTaken.yemek_resim_adi
-            addToCartFromDetail(yemek_adi,yemek_fiyat,yemek_resim_ad)
+            var yemek_siparis_adet = 2
+            var kullanici_adi = "eat_big"
+            addToCartFromDetail(yemek_adi,yemek_resim_ad,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
         }
 
         return binding.root
@@ -84,8 +83,9 @@ class FoodDetailFragment : Fragment() {
     fun goToCart(it: View){
         Navigation.findNavController(it).navigate(R.id.detailToCart)
     }
-    fun addToCartFromDetail(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
-        viewModel.addToCartFromDetail(yemek_adi,yemek_fiyat,yemek_resim_ad)
+    fun addToCartFromDetail(yemek_adi:String,yemek_resim_ad:String,yemek_fiyat:Int,
+                            yemek_siparis_adet:Int,kullanici_adi:String){
+        viewModel.addToCartFromDetail(yemek_adi,yemek_resim_ad,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
     }
 
     fun increaseQuantity(yemek_id: Int,quantity : Int){
@@ -94,9 +94,5 @@ class FoodDetailFragment : Fragment() {
 
     fun decreaseQuantity(yemek_id: Int,quantity : Int){
         viewModel.decreaseQuantity(yemek_id,quantity)
-    }
-    fun resimGuncelle(resimAdi:String){
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${resimAdi}"
-        Glide.with(this).load(url).override(300,300).into(binding.foodImage)
     }
 }
