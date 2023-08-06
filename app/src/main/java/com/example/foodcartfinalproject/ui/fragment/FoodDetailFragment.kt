@@ -1,6 +1,7 @@
 package com.example.foodcartfinalproject.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.FragmentFoodDetailBinding
 import com.example.foodcartfinalproject.ui.viewmodel.FoodDetailViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,10 +67,17 @@ class FoodDetailFragment : Fragment() {
         binding.addToCartDetail.setOnClickListener{
             var yemek_adi = foodTaken.yemek_adi
             var yemek_fiyat = foodTaken.yemek_fiyat
-            var yemek_resim_ad = foodTaken.yemek_resim_adi
-            var yemek_siparis_adet = 2
-            var kullanici_adi = "eat_big"
-            addToCartFromDetail(yemek_adi,yemek_resim_ad,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+            var yemek_resim_adi = foodTaken.yemek_resim_adi
+            var yemek_siparis_adet = quantity
+            var kullanici_adi = "eat_big_get_big"
+            if(quantity>0){
+                addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+            }else{Snackbar.make(it,"You need to increase quantity",Snackbar.LENGTH_SHORT)
+                .setAction("Ok"){
+
+                }.show()
+
+            }
         }
 
         return binding.root
@@ -83,9 +92,9 @@ class FoodDetailFragment : Fragment() {
     fun goToCart(it: View){
         Navigation.findNavController(it).navigate(R.id.detailToCart)
     }
-    fun addToCartFromDetail(yemek_adi:String,yemek_resim_ad:String,yemek_fiyat:Int,
+    fun addToCartFromDetail(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
                             yemek_siparis_adet:Int,kullanici_adi:String){
-        viewModel.addToCartFromDetail(yemek_adi,yemek_resim_ad,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+        viewModel.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
     }
 
     fun increaseQuantity(yemek_id: Int,quantity : Int){

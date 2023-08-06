@@ -7,15 +7,16 @@ import com.example.foodcartfinalproject.retrofit.CartFoodsDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class CartFoodsDataSource {
+class CartFoodsDataSource(var cdao:CartFoodsDao) {
 
-    suspend fun addToCartFromDetail(yemek_adi:String,yemek_resim_ad:String,yemek_fiyat:Int,
+    suspend fun addToCartFromDetail(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
                                     yemek_siparis_adet:Int,kullanici_adi:String){
-        Log.e("yemek kaydet","$yemek_adi,$yemek_resim_ad,$yemek_fiyat,$yemek_siparis_adet,$kullanici_adi")
+        cdao.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+        Log.e("sepete ekle çalıştı","sepete ekle mesajı Data source")
     }
 
     suspend fun deleteFood(yemek_id: Int,kullanici_adi: String){
-        Log.e("yemek sil", yemek_id.toString())
+        cdao.deleteFoods(yemek_id,kullanici_adi)
     }
 
     suspend fun increaseQuantity(yemek_id: Int,quantity : Int){
@@ -28,15 +29,7 @@ class CartFoodsDataSource {
 
     suspend fun loadFoodsToCart() : List<CartFoods> =
         withContext(Dispatchers.IO){
-            val foodCartList = ArrayList<CartFoods>()
-            val y1 = CartFoods(1,"sepet1","sepetresim1",11,1,"eat_big")
-            val y2 = CartFoods(2,"sepet2","sepetresim2",22,2,"eat_big")
-            val y3 = CartFoods(3,"sepet3","sepetresim3",33,3,"eat_big")
-
-            foodCartList.add(y1)
-            foodCartList.add(y2)
-            foodCartList.add(y3)
-            return@withContext foodCartList
+            return@withContext cdao.loadCartFoods("eat_big_get_big").sepet_yemekler
         }
 
 }

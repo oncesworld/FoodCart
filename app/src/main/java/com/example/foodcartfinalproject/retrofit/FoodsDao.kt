@@ -1,5 +1,7 @@
 package com.example.foodcartfinalproject.retrofit
 
+import android.widget.ImageView
+import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.data.entity.FoodsResponse
 import retrofit2.http.GET
 
@@ -10,6 +12,5 @@ interface FoodsDao {
 
     @GET("yemekler/tumYemekleriGetir.php")
     suspend fun loadFoods() : FoodsResponse
-
 
 }
