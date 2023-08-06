@@ -5,6 +5,7 @@ import com.example.foodcartfinalproject.data.datasource.FoodsDataSource
 import com.example.foodcartfinalproject.data.repo.CartFoodsRepository
 import com.example.foodcartfinalproject.data.repo.FoodsRepository
 import com.example.foodcartfinalproject.retrofit.ApiUtils
+import com.example.foodcartfinalproject.retrofit.CartFoodsDao
 import com.example.foodcartfinalproject.retrofit.FoodsDao
 import dagger.Module
 import dagger.Provides
@@ -41,8 +42,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideCartFoodsDataSource() : CartFoodsDataSource{
-        return CartFoodsDataSource()
+    fun provideCartFoodsDataSource(cdao:CartFoodsDao) : CartFoodsDataSource{
+        return CartFoodsDataSource(cdao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartFoodsDao() : CartFoodsDao{
+        return ApiUtils.getCartFoodsDao()
     }
 
 }

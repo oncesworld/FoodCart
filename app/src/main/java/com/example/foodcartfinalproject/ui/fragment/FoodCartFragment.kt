@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.FragmentFoodCartBinding
@@ -26,14 +27,18 @@ class FoodCartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        //Yüklenen verinin sepette gösterilmesini sağlar
+        viewModel.cartFoodList.observe(viewLifecycleOwner){
+
+
+            val adapter = FoodCartAdapter(requireContext(),it,viewModel)
+            binding.foodCartAdapter = adapter
+        }
+
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_food_cart,container,false)
         binding.cartPageFragment = this
         binding.toolbarCartPageData = "My Cart"
 
-        viewModel.cartFoodList.observe(viewLifecycleOwner){
-            val adapter = FoodCartAdapter(requireContext(),it,viewModel)
-            binding.foodCartAdapter = adapter
-        }
 
 
         return binding.root

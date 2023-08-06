@@ -4,9 +4,11 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.foodcartfinalproject.R
 import com.example.foodcartfinalproject.data.entity.CartFoods
 import com.example.foodcartfinalproject.data.entity.Foods
@@ -28,10 +30,12 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, 
     override fun onBindViewHolder(holder: CardDesignHolderCart, position: Int) {
         val foodCart = foodCartList.get(position)
         val d = holder.design
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodCart.yemek_resim_adi}"
-        Glide.with(mContext).load(url).override(300,300).into(d.cardCartFoodImage)
+        d.foodVariableCart = foodCart
 
-        d.foodVariable = foodCart
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodCart.yemek_resim_adi}"
+        getImageFromGlide(url,d.cardCartFoodImage)
+        //Glide.with(mContext).load(url).override(300,300).into(d.cardCartFoodImage)
+
 
         //Adedi nasıl alacağız?
         //d.cardCartFoodImage.setImageResource(foodCart.yemek_resim_adi)
@@ -42,9 +46,13 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, 
         d.cartCardDeleteButton.setOnClickListener{
             Snackbar.make(it,"${foodCart.yemek_adi} discard?",Snackbar.LENGTH_SHORT)
                 .setAction("Yes"){
-                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = "eat_big")
+                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = "eat_big1")
                 }.show()
         }
+    }
+
+    fun getImageFromGlide(url: String, cardCartFoodImage: ImageView) {
+        Glide.with(mContext).load(url).override(300,300).into(cardCartFoodImage)
     }
 
     override fun getItemCount(): Int {

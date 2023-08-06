@@ -1,6 +1,8 @@
 package com.example.foodcartfinalproject.data.datasource
 
 import android.util.Log
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.retrofit.FoodsDao
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +17,6 @@ class FoodsDataSource(var fdao:FoodsDao) {
     suspend fun loadFoodsToMain() : List<Foods> =
         withContext(Dispatchers.IO){
             return@withContext fdao.loadFoods().yemekler
-
         }
 
 }

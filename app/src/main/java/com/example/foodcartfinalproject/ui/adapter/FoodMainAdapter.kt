@@ -3,6 +3,7 @@ package com.example.foodcartfinalproject.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -28,10 +29,10 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
 
         val food = foodList.get(position)
         val d = holder.design
+        d.foodVariableMain = food
+
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}"
         Glide.with(mContext).load(url).override(300,300).into(d.cardFoodImageMain)
-
-        d.foodVariableMain = food
 
         //d.cardFoodImageMain.setImageResource(food.yemek_resim_adi)
 
@@ -51,8 +52,6 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
             Navigation.findNavController(it).navigate(transition)
         }
 
-
-
     }
     override fun getItemCount(): Int {
         return foodList.size
@@ -61,4 +60,5 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
     fun addToCartFromMain(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
         viewModel.addToCartFromMain(yemek_adi,yemek_fiyat,yemek_resim_ad)
     }
+
 }
