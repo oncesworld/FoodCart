@@ -15,6 +15,7 @@ import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.CardCartpageBinding
 import com.example.foodcartfinalproject.databinding.CardMainpageBinding
 import com.example.foodcartfinalproject.ui.viewmodel.FoodCartViewModel
+import com.example.foodcartfinalproject.utility.UserNameStatic
 import com.google.android.material.snackbar.Snackbar
 
 class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, var viewModel: FoodCartViewModel)
@@ -34,23 +35,15 @@ class FoodCartAdapter(var mContext: Context, var foodCartList: List<CartFoods>, 
 
             val url = "http://kasimadalan.pe.hu/yemekler/resimler/${foodCart.yemek_resim_adi}"
             getImageFromGlide(url,d.cardCartFoodImage)
-            //Glide.with(mContext).load(url).override(300,300).into(d.cardCartFoodImage)
-
-
-            //Adedi nasıl alacağız?
-            //d.cardCartFoodImage.setImageResource(foodCart.yemek_resim_adi)
-            //d.card.adet =
 
 
         //Yemek sil fonksiyonu aşağıdaki gibi
         d.cartCardDeleteButton.setOnClickListener {
             Snackbar.make(it, "${foodCart.yemek_adi} discard?", Snackbar.LENGTH_SHORT)
                 .setAction("Yes") {
-                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = "eat_big_get_big")
+                    deleteFood(foodCart.sepet_yemek_id, kullanici_adi = UserNameStatic.user_name)
                 }.show()
         }
-
-
     }
 
     fun getImageFromGlide(url: String, cardCartFoodImage: ImageView) {

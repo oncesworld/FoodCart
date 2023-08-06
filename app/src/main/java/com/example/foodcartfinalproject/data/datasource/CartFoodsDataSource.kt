@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.foodcartfinalproject.data.entity.CartFoods
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.retrofit.CartFoodsDao
+import com.example.foodcartfinalproject.utility.UserNameStatic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -11,8 +12,8 @@ class CartFoodsDataSource(var cdao:CartFoodsDao) {
 
     suspend fun addToCartFromDetail(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
                                     yemek_siparis_adet:Int,kullanici_adi:String){
-        cdao.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-        Log.e("sepete ekle çalıştı","sepete ekle mesajı Data source")
+            cdao.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+
     }
 
     suspend fun deleteFood(yemek_id: Int,kullanici_adi: String){
@@ -29,7 +30,6 @@ class CartFoodsDataSource(var cdao:CartFoodsDao) {
 
     suspend fun loadFoodsToCart() : List<CartFoods> =
         withContext(Dispatchers.IO){
-            return@withContext cdao.loadCartFoods("eat_big_get_big").sepet_yemekler
+            return@withContext cdao.loadCartFoods(UserNameStatic.user_name).sepet_yemekler
         }
-
 }
