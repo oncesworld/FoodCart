@@ -69,13 +69,14 @@ class FoodDetailFragment : Fragment() {
 
         // Detay ekranından Sepete ekleyen fonksiyon
         binding.addToCartDetail.setOnClickListener{
+            var yemek_id = foodTaken.yemek_id
             var yemek_adi = foodTaken.yemek_adi
             var yemek_fiyat = foodTaken.yemek_fiyat
             var yemek_resim_adi = foodTaken.yemek_resim_adi
             var yemek_siparis_adet = quantity
             var kullanici_adi = UserNameStatic.user_name
             if(quantity>0){
-                addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+                addToCartFromDetail(yemek_id ,yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
             }else{Snackbar.make(it,"You need to increase quantity",Snackbar.LENGTH_SHORT)
                 .setAction("Ok"){
                 }.show()
@@ -93,9 +94,9 @@ class FoodDetailFragment : Fragment() {
     fun goToCart(it: View){
         Navigation.findNavController(it).navigate(R.id.detailToCart)
     }
-    fun addToCartFromDetail(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
+    fun addToCartFromDetail(yemek_id: Int,yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
                             yemek_siparis_adet:Int,kullanici_adi:String){
-        viewModel.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+        viewModel.addToCartFromDetail(yemek_id,yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
     }
 
     fun increaseQuantity(yemek_id: Int,quantity : Int){

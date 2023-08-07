@@ -6,10 +6,9 @@ import com.example.foodcartfinalproject.data.entity.CartFoods
 
 class CartFoodsRepository(var cfds : CartFoodsDataSource) {
 
-    suspend fun addToCartFromDetail(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
+    suspend fun addToCartFromDetail(yemek_id: Int,yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
                                     yemek_siparis_adet:Int,kullanici_adi:String){
-        cfds.addToCartFromDetail(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-        Log.e("sepete ekle çalıştı","sepete ekle Repository")
+        cfds.addToCartFromDetail(yemek_id,yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
     }
 
     suspend fun deleteFood(yemek_id: Int,kullanici_adi: String){
