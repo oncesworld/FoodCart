@@ -7,6 +7,7 @@ import com.example.foodcartfinalproject.data.entity.CartFoods
 import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.data.repo.CartFoodsRepository
 import com.example.foodcartfinalproject.data.repo.FoodsRepository
+import com.example.foodcartfinalproject.utility.UserNameStatic
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ class FoodCartViewModel @Inject constructor(var crepo:CartFoodsRepository) : Vie
 
     //Uygulama çalışır çalışmaz liste yükle kodunun çalışmasını sağlar
     init {
-        loadFoodsToCart()
+            loadFoodsToCart()
     }
 
     fun loadFoodsToCart(){

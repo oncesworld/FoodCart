@@ -28,7 +28,6 @@
 
                 <ImageView
                     android:id="@+id/cardCartFoodImage"
-                    android:src="@{foodVariableCart.yemek_resim_adi}"
                     android:layout_width="140dp"
                     android:layout_height="124dp"
                     android:layout_marginStart="3dp"

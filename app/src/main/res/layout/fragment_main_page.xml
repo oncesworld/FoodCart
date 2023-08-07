@@ -22,15 +22,15 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarMainPage"
-            app:title="@{toolbarMainPageData}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="#a38ac5"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{toolbarMainPageData}" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabMain"
@@ -40,9 +40,10 @@
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:onClick="@{()-> mainPageFragment.goToCart(fabMain)}"
-            android:src="@drawable/go_to_cart"
+            android:src="@drawable/shopping_cart"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMain"

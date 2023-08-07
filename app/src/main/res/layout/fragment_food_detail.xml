@@ -108,23 +108,29 @@
             android:id="@+id/fabDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:clickable="true"
             android:onClick="@{()-> detailPageFragment.goToCart(fabDetail)}"
-            android:src="@drawable/go_to_cart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageButton
-            android:id="@+id/addToCartDetail"
-            android:layout_width="68dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="67dp"
-            android:src="@drawable/add_to_cart"
+            android:src="@drawable/shopping_cart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage"
+            app:maxImageSize="40dp" />
+
+        <ImageView
+            android:id="@+id/addToCartDetail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="193dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="122dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fabDetail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quantityText" />
+            app:layout_constraintTop_toBottomOf="@+id/quantityText"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/add_to_cart_3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
