@@ -21,9 +21,9 @@
             android:id="@+id/cardViewCart"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            app:cardBackgroundColor="@android:color/system_accent2_50"
             android:foreground="@drawable/bg_roundrect_ripple_light_border"
-            app:cardCornerRadius="5dp">
+            app:cardBackgroundColor="@android:color/system_accent2_50"
+            app:cardCornerRadius="10dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
