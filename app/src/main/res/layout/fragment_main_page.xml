@@ -29,8 +29,20 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@{toolbarMainPageData}" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{toolbarMainPageData}"
+                android:textSize="33sp"
+                android:textStyle="bold"
+                android:typeface="serif"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="10dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabMain"

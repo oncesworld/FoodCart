@@ -13,6 +13,7 @@ import com.example.foodcartfinalproject.data.entity.Foods
 import com.example.foodcartfinalproject.databinding.CardMainpageBinding
 import com.example.foodcartfinalproject.ui.fragment.MainPageFragmentDirections
 import com.example.foodcartfinalproject.ui.viewmodel.MainPageViewModel
+import com.example.foodcartfinalproject.utility.UserNameStatic
 
 class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewModel: MainPageViewModel)
     : RecyclerView.Adapter<FoodMainAdapter.CardDesignHolder>() {
@@ -40,11 +41,16 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
         //Butonların özelliklerini aşağıdaki gibi aktif ediyorum
         //Sepete ekliyorum
         d.addtoCartCardMainPage.setOnClickListener{
+            var yemek_id = food.yemek_id
             var yemek_adi = food.yemek_adi
             var yemek_fiyat = food.yemek_fiyat
-            var yemek_resim_ad = food.yemek_resim_adi
-            addToCartFromMain(yemek_adi,yemek_fiyat,yemek_resim_ad)
+            var yemek_resim_adi = food.yemek_resim_adi
+            var yemek_siparis_adet = 1
+            var kullanici_adi = UserNameStatic.user_name
+            addToCartFromMain(yemek_id,yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
         }
+        
+
 
         //Karta tıkladığımda detaya bilgileri gönderiyorum
         d.cardViewMainPage.setOnClickListener{
@@ -57,8 +63,9 @@ class FoodMainAdapter(var mContext: Context, var foodList: List<Foods>,var viewM
         return foodList.size
     }
 
-    fun addToCartFromMain(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
-        viewModel.addToCartFromMain(yemek_adi,yemek_fiyat,yemek_resim_ad)
+    fun addToCartFromMain(yemek_id: Int,yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
+                            yemek_siparis_adet:Int,kullanici_adi:String){
+        viewModel.addToCartFromMain(yemek_id,yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
     }
 
 }

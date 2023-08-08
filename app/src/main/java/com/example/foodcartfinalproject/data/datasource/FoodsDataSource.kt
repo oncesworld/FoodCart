@@ -10,8 +10,8 @@ import kotlinx.coroutines.withContext
 
 class FoodsDataSource(var fdao:FoodsDao) {
 
-    suspend fun addToCartFromMain(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
-        Log.e("sepetemaindenekle","$yemek_adi")
+    suspend fun addToCartFromMain(yemek_id: Int,yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String){
+        fdao.addToCartFromMain(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet =1,kullanici_adi)
     }
 
     suspend fun loadFoodsToMain() : List<Foods> =

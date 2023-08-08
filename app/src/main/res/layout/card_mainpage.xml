@@ -43,6 +43,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@{foodVariableMain.yemek_adi}"
+                    android:textSize="20sp"
+                    android:typeface="serif"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -53,12 +55,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="17dp"
-                    android:text="@{String.valueOf(foodVariableMain.yemek_fiyat)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text='@{"Price " + String.valueOf(foodVariableMain.yemek_fiyat) + " ₺"}'
+                    android:textSize="16sp"
+                    android:typeface="serif"
+                    app:layout_constraintBottom_toBottomOf="@+id/addtoCartCardMainPage"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardFoodName" />
+                    app:layout_constraintTop_toTopOf="@+id/addtoCartCardMainPage" />
 
                 <ImageView
                     android:id="@+id/addtoCartCardMainPage"

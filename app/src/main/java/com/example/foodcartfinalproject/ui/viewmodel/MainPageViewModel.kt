@@ -26,9 +26,10 @@ class MainPageViewModel @Inject constructor(var frepo:FoodsRepository) : ViewMod
         }
     }
 
-    fun addToCartFromMain(yemek_adi:String,yemek_fiyat:Int,yemek_resim_ad:String){
+    fun addToCartFromMain(yemek_id: Int,yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,
+                          yemek_siparis_adet:Int,kullanici_adi:String){
         CoroutineScope(Dispatchers.Main).launch {
-            frepo.addToCartFromMain(yemek_adi,yemek_fiyat,yemek_resim_ad)
+            frepo.addToCartFromMain(yemek_id,yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
         }
     }
 }
