@@ -40,6 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="@{foodVariable.yemek_adi}"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:typeface="serif"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbarDetailPage" />
@@ -48,8 +51,10 @@
             android:id="@+id/foodPriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="81dp"
-            android:text="@{String.valueOf(foodVariable.yemek_fiyat)}"
+            android:layout_marginTop="60dp"
+            android:text='@{"Price " + String.valueOf(foodVariable.yemek_fiyat) + " ₺"}'
+            android:textSize="20sp"
+            android:typeface="serif"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantity"
+            android:textSize="20sp"
+            android:typeface="serif"
             app:layout_constraintBottom_toBottomOf="@+id/buttonIncreaseQuantity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -74,7 +81,9 @@
             android:layout_marginTop="415dp"
             android:layout_marginEnd="47dp"
             android:layout_marginBottom="119dp"
+            android:background="@drawable/border_background"
             android:text="-"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/quantityText"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,11 +91,19 @@
 
         <Button
             android:id="@+id/buttonIncreaseQuantity"
-            android:layout_width="59dp"
+            android:layout_width="57dp"
             android:layout_height="57dp"
             android:layout_marginStart="38dp"
             android:layout_marginEnd="82dp"
+            android:background="@drawable/border_background"
             android:text="+"
+            android:textColorHighlight="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="20sp"
+            app:icon="@drawable/bg_roundrect_ripple_light_border"
+            app:iconGravity="textEnd|textStart"
+            app:iconPadding="2dp"
+            app:iconSize="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/buttonDecreaseQuantity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/quantityText"
@@ -94,15 +111,25 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarDetailPage"
-            app:title="@{toolbarDetailPageData}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="#a38ac5"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{toolbarDetailPageData}"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:typeface="serif"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="10dp" />
+        </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabDetail"
